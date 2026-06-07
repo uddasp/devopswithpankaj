@@ -1,0 +1,46 @@
+name: Terraform Deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'terraform/**'
+
+env:
+  AWS_REGION: us-east-1
+  TERRAFORM_VERSION: 1.9.0
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-terraform-role
+          aws-region: ${{ env.AWS_REGION }}
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+      
+      - name: Terraform Init
+        working-directory: terraform/accounts
+        run: terraform init
+      
+      - name: Terraform Validate
+        working-directory: terraform/accounts
+        run: terraform validate
+      
+      - name: Terraform Apply
+        working-directory: terraform/accounts
+        run: terraform apply -auto-approve

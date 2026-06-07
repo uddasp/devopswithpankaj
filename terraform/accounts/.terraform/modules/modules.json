@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"vpc","Source":"../modules/vpc","Dir":"../modules/vpc"},{"Key":"github_runner","Source":"../modules/github-runner","Dir":"../modules/github-runner"},{"Key":"","Source":"","Dir":"."}]}
