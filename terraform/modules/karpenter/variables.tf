@@ -27,3 +27,8 @@ variable "subnet_ids" {
   description = "Subnet IDs for Karpenter nodes"
   type        = list(string)
 }
+
+variable "cluster_oidc_issuer_url" {
+  description = "EKS cluster OIDC issuer URL"
+  type        = string
+}

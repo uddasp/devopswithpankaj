@@ -26,10 +26,11 @@ module "karpenter" {
     kubernetes = kubernetes
   }
   
-  cluster_name             = module.eks_cluster.cluster_name
-  cluster_endpoint         = module.eks_cluster.cluster_endpoint
-  cluster_ca_certificate   = module.eks_cluster.cluster_ca_certificate
-  node_role_arn            = module.eks_cluster.node_role_arn
-  vpc_id                   = module.vpc.vpc_id
-  subnet_ids               = module.vpc.private_subnet_ids
+  cluster_name              = module.eks_cluster.cluster_name
+  cluster_endpoint          = module.eks_cluster.cluster_endpoint
+  cluster_ca_certificate    = module.eks_cluster.cluster_ca_certificate
+  cluster_oidc_issuer_url   = module.eks_cluster.cluster_oidc_issuer_url
+  node_role_arn             = module.eks_cluster.node_role_arn
+  vpc_id                    = module.vpc.vpc_id
+  subnet_ids                = module.vpc.private_subnet_ids
 }
