@@ -24,7 +24,7 @@ module "karpenter" {
   
   cluster_name             = module.eks_cluster.cluster_name
   cluster_endpoint         = module.eks_cluster.cluster_endpoint
-  cluster_ca_certificate   = base64decode(data.aws_eks_cluster.cluster.certificate_authority[0].data)
+  cluster_ca_certificate   = module.eks_cluster.cluster_ca_certificate
   node_role_arn            = module.eks_cluster.node_role_arn
   vpc_id                   = module.vpc.vpc_id
   subnet_ids               = module.vpc.private_subnet_ids
