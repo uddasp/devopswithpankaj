@@ -22,10 +22,6 @@ module "eks_cluster" {
 module "karpenter" {
   source = "../modules/karpenter"
   
-  providers = {
-    kubernetes = kubernetes
-  }
-  
   cluster_name              = module.eks_cluster.cluster_name
   cluster_endpoint          = module.eks_cluster.cluster_endpoint
   cluster_ca_certificate    = module.eks_cluster.cluster_ca_certificate
