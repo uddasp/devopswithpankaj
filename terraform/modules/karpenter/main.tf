@@ -95,7 +95,7 @@ resource "kubernetes_deployment" "karpenter" {
           name  = "karpenter"
           image = "public.ecr.aws/karpenter/karpenter:v0.33.0"
 
-          ports {
+          port {
             container_port = 8080
             name           = "http"
           }
