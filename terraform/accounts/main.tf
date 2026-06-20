@@ -33,4 +33,6 @@ module "karpenter" {
   node_role_arn             = module.eks_cluster.node_role_arn
   vpc_id                    = module.vpc.vpc_id
   subnet_ids                = module.vpc.private_subnet_ids
+  
+  depends_on = [module.eks_cluster]
 }
